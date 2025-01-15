@@ -2,10 +2,9 @@
 require("config.lazy")
 
 -- Copy shortcut
-vim.api.nvim_set_keymap('v', '<C-c>', ':w !xclip -selection clipboard<CR><CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-c>", ":w !xclip -selection clipboard<CR><CR>", { noremap = true, silent = true })
 
-
-require('neo-tree').setup {
+require("neo-tree").setup({
   filesystem = {
     filtered_items = {
       visible = true, -- This will show hidden files
@@ -13,4 +12,7 @@ require('neo-tree').setup {
       hide_gitignored = false, -- This will show gitignored files
     },
   },
-}
+})
+require("lspconfig").clangd.setup({
+  cmd = { "clangd", "--background-index", "--completion-style=detailed", "--clang-tidy" },
+})
