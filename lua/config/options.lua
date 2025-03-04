@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 -- Activer l'indentation automatique
-vim.opt.autoindent = true
+-- vim.opt.autoindent = true
 -- Définir la largeur d'un niveau d'indentation
 vim.opt.shiftwidth = 4
 
@@ -13,5 +13,6 @@ vim.opt.expandtab = true
 
 -- autosave
 vim.opt.autowrite = true
-vim.opt.autowriteall = true
-
+-- vim.opt.autowriteall = true
+vim.opt.textwidth = 0
+vim.opt.formatoptions:remove("t")

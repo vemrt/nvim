@@ -1,6 +1,19 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+if true then return {
+
+{
+    "neovim/nvim-lspconfig",
+    lazy = true,
+    config = function()
+      require("lspconfig").clangd.setup({
+        cmd = { "clangd", "--compile-commands-dir=." },  -- Use the generated compile_commands.json
+        root_dir = require("lspconfig.util").root_pattern("compile_commands.json", ".git"),  -- Use compile_commands.json or .git to detect root
+        -- Additional clangd settings here, if needed
+      })
+    end,
+  },
+} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -93,6 +106,9 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        clangd = {
+          cmd = { "clangd", "--all-scopes-completion", "--completion-style=detailed" },
+        },
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
       },
